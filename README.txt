@@ -1,9 +1,5 @@
-projet de RSA MyAdBlock
+Projet de RSA : Proxy MyAdBlock
+Auteurs : Jean-Etienne SCHOUVER & Marion TOUSSAINT
 
 
-Travail à faire :
-  Proxy
-  Analyse avec Proxy
-  Proxy AdBlock
-  README + Makefile
-  Rapport
+
