@@ -1,26 +1,27 @@
 #!/bin/bash
+# chemin du dossier courant et fichiet txt avec URL
+PATH=$(dirname "$0")
+PATH_LIST="${PATH}/urls.txt"
 
-WORKING_DIR=$(dirname "$0")
-URL_LIST_FILE="${WORKING_DIR}/urls.txt"
-
-
-if [ ! -e "${URL_LIST_FILE}" ] ; then
+#verification que le fichier urls.txt est present
+if [ ! -e "${PATH_LIST}" ] ; then
 	echo "Le fichier 'urls.txt' est absent."
 	exit 1
 fi
-
-remove_com(){
+#fonction pour retirer l'entete
+header(){
 	grep -v '^$\|^#' "$1" | sed 's/$/ /'| tr -d '\n'
 }
-
-URL_LIST=$(remove_com "${URL_LIST_FILE}")
-
-EASYLIST_URL_LIST=(${URL_LIST}) # URL list as array to loop
-
-for URL in "${EASYLIST_URL_LIST[@]}"
+# on retire l'entete
+URL_LIST=$(header "${PATH_LIST}")
+#recupere le contenu de chaque ligne dans un tableau
+EASYLIST_URL=(${URL_LIST}) 
+#boucle sur chaque ligne
+for URL in "${EASYLIST_URL[@]}"
 do
 	echo "Telechargement de la EasyList."
-	wget -q --no-check-certificate -p ${WORKING_DIR} "${URL}"
+	#telecharge le easylist.txt
+	wget -q --no-check-certificate -p ${PATH} "${URL}"
 
 done
 echo "EasyList à jour"
