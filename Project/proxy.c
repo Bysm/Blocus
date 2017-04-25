@@ -52,18 +52,6 @@ char * get_host(char * requete){
 		return "err";
 	}
 	else{
-		
-		/*char * host = (char *) malloc(256*sizeof(char));
-		while( buffer[i] != '\r')
-		{
-			printf("hello\n");
-			printf("%d\n",buffer[i]);
-			host[i-7]= buffer[i];
-			i++;
-		}
-		printf("fin while\n");
-		return host;*/
-		
 		char * host = (char *)malloc(256 * sizeof(char));
 		while( buffer[i] != '\n' ){
 			i++;
@@ -132,39 +120,7 @@ int proxy(int sock){
 	// on recupere le chemin apres nom d'host
 	if(temp!= NULL)
 		temp = strtok(NULL,"^]");
-
 	
-/*
-	char * host = get_host(buffR);
-	//printf("OKAY0\n");
-	if ((get = getaddrinfo(host,"80",NULL,&add_serv))<0){
-		printf("erreur de recuperation URL > @IP\n");
-		close(socket_client);
-		return -1;
-	}
-	
-		//affichage de l'adresse sous format @IP du domaine
-	
-	struct in_addr  *addr; 
-	char ipstr[INET_ADDRSTRLEN];
-	struct addrinfo hints, *p;
-	for (p=add_serv; p!=NULL; p=p->ai_next) { 
-	    //struct in_addr  *addr;  
-	    if (p->ai_family == AF_INET) { 
-	        struct sockaddr_in *ipv = (struct sockaddr_in *)p->ai_addr; 
-	        addr = &(ipv->sin_addr);  
-	    } 
-	    else { 
-	        struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *)p->ai_addr; 
-	        addr = (struct in_addr *) &(ipv6->sin6_addr); 
-	    }
-	        inet_ntop(p->ai_family, addr, ipstr, sizeof ipstr); 
-	} 
-	
-	printf("requete recue, %d ; Address: %s\n",size, ipstr);
-	*/
-
-	//printf("OKAY1\n");
 	// si c'est une pub on envoi pas de requete au serveur
 	if(pub ==0){
 		bzero((char*)&send_add,sizeof(send_add));
@@ -173,7 +129,7 @@ int proxy(int sock){
 		//send_add.sin_addr = *addr;
 		bcopy((char*)host->h_addr,(char*)&send_add.sin_addr.s_addr,host->h_length);
 		//memset(&(send_add.sin_zero),'\0',8);
-		//printf("OKAY2\n");
+		
 		if( (socket_send = socket(AF_INET, SOCK_STREAM, 0)) < 0){
 			printf("Erreur sur la creation de la socket de com vers domaine\n");
 			close(socket_client);
