@@ -1,0 +1,2 @@
+# Lien de la liste des domaines de publicité
+https://easylist-downloads.adblockplus.org/easylist.txt
