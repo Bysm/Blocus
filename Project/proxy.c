@@ -34,7 +34,7 @@ int test_pub(char * host){
 		}
 	}
 	else{
-		printf("erreur sur la easylist.txt fichier absent\n");
+		printf("erreur sur easylist.txt : fichier absent\n");
 	}
 	if(ret!= NULL){
 		res =1;
@@ -48,7 +48,7 @@ char * get_host(char * requete){
 	unsigned short i = 0, j= 0 ;
 	char * buffer = (char * )malloc(2*1024 * sizeof(char));
 	if(!(buffer = strstr(requete, "Host: " )) ){
-		printf("erreur sur la requete impossible de recuperer l'host\n");
+		printf("erreur sur la requête : impossible de recupérer l'host\n");
 		return "err";
 	}
 	else{
@@ -100,7 +100,7 @@ int proxy(int sock){
 		&& ((strncmp(t3,"HTTP/1.1",8)==0)||(strncmp(t3,"HTTP/1.0",8)==0)) 
 		&&  (strncmp(t2,"http://",7)==0) ) ){
 
-		printf("erreur sur la requete HTTP  invalide\n");
+		printf("erreur sur la requête HTTP invalide\n");
 		return -1;
 	}
 	strcpy(t1,t2);
@@ -131,7 +131,7 @@ int proxy(int sock){
 		//memset(&(send_add.sin_zero),'\0',8);
 		
 		if( (socket_send = socket(AF_INET, SOCK_STREAM, 0)) < 0){
-			printf("Erreur sur la creation de la socket de com vers domaine\n");
+			printf("Erreur sur la création de la socket de communication vers le domaine\n");
 			close(socket_client);
 			return -1;
 		}
