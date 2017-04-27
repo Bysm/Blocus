@@ -112,8 +112,8 @@ int proxy(int sock){
 	// on met l'HOST dans t2
 	sprintf(t2,"%s",temp);
 	host=gethostbyname(t2);
-
-
+	pub = test_pub(site);
+	printf("PUB %d\n", pub);
 	strcat(t1,"^]");
 	temp = strtok(t1,"//");
 	temp = strtok(NULL, "/");
@@ -149,8 +149,8 @@ int proxy(int sock){
 
 		// teste si c'est de la pub 
 
-		pub = test_pub(site);
-		//printf("PUB %d\n", pub);
+		
+		
 		//envoi de la requete au serveur
 		
 		if(send(socket_send,buffR, (int)strlen(buffR),0) < 0){
